@@ -25,6 +25,18 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
@@ -72,18 +84,22 @@ export const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background border-t border-border"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="lg:hidden bg-background/98 backdrop-blur-lg border-t border-border overflow-hidden"
           >
-            <div className="section-container py-6 space-y-4">
-              {navLinks.map((link) => (
-                <a
+            <div className="section-container py-6 space-y-1">
+              {navLinks.map((link, index) => (
+                <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-black font-medium"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  className="block py-3 px-4 text-foreground font-medium hover:bg-accent/10 rounded-sm transition-colors"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
             </div>
           </motion.div>
