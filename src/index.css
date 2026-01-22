@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Architectural color palette - warm neutrals */
+    --background: 40 20% 98%;
+    --foreground: 30 10% 12%;
+
+    --card: 40 15% 96%;
+    --card-foreground: 30 10% 12%;
+
+    --popover: 40 20% 98%;
+    --popover-foreground: 30 10% 12%;
+
+    /* Warm charcoal primary */
+    --primary: 30 8% 18%;
+    --primary-foreground: 40 20% 98%;
+
+    /* Warm stone secondary */
+    --secondary: 35 12% 92%;
+    --secondary-foreground: 30 10% 20%;
+
+    --muted: 35 10% 90%;
+    --muted-foreground: 30 8% 45%;
+
+    /* Warm gold accent */
+    --accent: 38 65% 50%;
+    --accent-foreground: 40 20% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 35 15% 88%;
+    --input: 35 15% 88%;
+    --ring: 38 65% 50%;
+
+    --radius: 0.25rem;
+
+    /* Custom architectural tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(30 8% 18%) 0%, hsl(35 12% 28%) 100%);
+    --section-divider: hsl(35 15% 88%);
+    --text-subtle: hsl(30 8% 55%);
+    --overlay-dark: hsla(30, 10%, 8%, 0.85);
+    --overlay-light: hsla(40, 20%, 98%, 0.95);
+    
+    /* Shadows */
+    --shadow-subtle: 0 4px 20px -4px hsla(30, 10%, 12%, 0.08);
+    --shadow-elevated: 0 12px 40px -8px hsla(30, 10%, 12%, 0.15);
+    --shadow-hero: 0 20px 60px -12px hsla(30, 10%, 12%, 0.25);
+
+    --sidebar-background: 40 20% 98%;
+    --sidebar-foreground: 30 10% 12%;
+    --sidebar-primary: 30 8% 18%;
+    --sidebar-primary-foreground: 40 20% 98%;
+    --sidebar-accent: 35 12% 92%;
+    --sidebar-accent-foreground: 30 10% 20%;
+    --sidebar-border: 35 15% 88%;
+    --sidebar-ring: 38 65% 50%;
+  }
+
+  .dark {
+    --background: 30 10% 8%;
+    --foreground: 40 15% 95%;
+
+    --card: 30 10% 12%;
+    --card-foreground: 40 15% 95%;
+
+    --popover: 30 10% 10%;
+    --popover-foreground: 40 15% 95%;
+
+    --primary: 40 15% 95%;
+    --primary-foreground: 30 10% 8%;
+
+    --secondary: 30 8% 18%;
+    --secondary-foreground: 40 15% 95%;
+
+    --muted: 30 8% 20%;
+    --muted-foreground: 35 10% 60%;
+
+    --accent: 38 65% 55%;
+    --accent-foreground: 30 10% 8%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 8% 20%;
+    --input: 30 8% 20%;
+    --ring: 38 65% 55%;
+
+    --hero-gradient: linear-gradient(135deg, hsl(30 10% 6%) 0%, hsl(30 8% 15%) 100%);
+    --overlay-dark: hsla(30, 10%, 4%, 0.9);
+    --overlay-light: hsla(30, 10%, 12%, 0.95);
+    
+    --shadow-subtle: 0 4px 20px -4px hsla(0, 0%, 0%, 0.3);
+    --shadow-elevated: 0 12px 40px -8px hsla(0, 0%, 0%, 0.4);
+    --shadow-hero: 0 20px 60px -12px hsla(0, 0%, 0%, 0.5);
+
+    --sidebar-background: 30 10% 8%;
+    --sidebar-foreground: 40 15% 95%;
+    --sidebar-primary: 40 15% 95%;
+    --sidebar-primary-foreground: 30 10% 8%;
+    --sidebar-accent: 30 8% 18%;
+    --sidebar-accent-foreground: 40 15% 95%;
+    --sidebar-border: 30 8% 20%;
+    --sidebar-ring: 38 65% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-cairo antialiased;
+    font-feature-settings: "ss01", "ss02";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-20 lg:py-28;
+  }
+
+  .heading-display {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+  }
+
+  .heading-section {
+    @apply text-3xl md:text-4xl font-bold leading-tight;
+  }
+
+  .heading-subsection {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+
+  .text-body {
+    @apply text-base md:text-lg leading-relaxed text-muted-foreground;
+  }
+
+  .text-caption {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .divider-accent {
+    @apply w-16 h-1 bg-accent rounded-full;
+  }
+
+  .card-architectural {
+    @apply bg-card border border-border rounded-sm shadow-subtle hover:shadow-elevated transition-shadow duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-8 py-4 font-medium hover:bg-primary/90 transition-colors;
+  }
+
+  .btn-outline {
+    @apply border border-primary text-primary px-8 py-4 font-medium hover:bg-primary hover:text-primary-foreground transition-colors;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-accent-foreground px-8 py-4 font-medium hover:bg-accent/90 transition-colors;
+  }
+
+  .nav-link {
+    @apply text-muted-foreground hover:text-foreground transition-colors duration-200 relative;
+  }
+
+  .nav-link-active {
+    @apply text-foreground;
+  }
+
+  .grid-architectural {
+    @apply grid gap-6 md:gap-8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-right {
+    animation: slideRight 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
