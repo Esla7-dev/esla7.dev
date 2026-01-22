@@ -48,26 +48,26 @@ export const Footer = () => {
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-accent" />
                 <a
-                  href="mailto:info@eslah.com"
+                  href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`}
                   className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
                 >
-                  info@eslah.com
+                  {import.meta.env.VITE_CONTACT_EMAIL}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-accent" />
                 <a
-                  href="tel:+201234567890"
+                  href={`tel:${import.meta.env.VITE_CONTACT_PHONE}`}
                   className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
                   dir="ltr"
                 >
-                  +20 123 456 7890
+                  {import.meta.env.VITE_CONTACT_PHONE}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-accent mt-1" />
                 <span className="text-primary-foreground/70">
-                  القاهرة، مصر
+                  {import.meta.env.VITE_CONTACT_LOCATION}
                 </span>
               </li>
             </ul>
