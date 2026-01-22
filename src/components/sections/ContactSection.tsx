@@ -89,10 +89,10 @@ export const ContactSection = () => {
                 <div>
                   <p className="text-sm text-muted-foreground">البريد الإلكتروني</p>
                   <a
-                    href="mailto:esla7.dev@gmail.com"
+                    href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`}
                     className="font-medium text-foreground hover:text-accent transition-colors"
                   >
-                    esla7.dev@gmail.com
+                    {import.meta.env.VITE_CONTACT_EMAIL}
                   </a>
                 </div>
               </div>
@@ -104,13 +104,13 @@ export const ContactSection = () => {
                 <div>
                   <p className="text-sm text-muted-foreground">واتساب</p>
                   <a
-                    href="https://wa.me/971588927001"
+                    href={`https://wa.me/${import.meta.env.VITE_CONTACT_WHATSAPP}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-medium text-foreground hover:text-accent transition-colors"
                     dir="ltr"
                   >
-                    +971 58 892 7001
+                    {import.meta.env.VITE_CONTACT_PHONE}
                   </a>
                 </div>
               </div>
@@ -123,18 +123,18 @@ export const ContactSection = () => {
                   <p className="text-sm text-muted-foreground">الهاتف</p>
                   <div className="space-y-1">
                     <a
-                      href="tel:+971588927001"
+                      href={`tel:${import.meta.env.VITE_CONTACT_PHONE}`}
                       className="block font-medium text-foreground hover:text-accent transition-colors"
                       dir="ltr"
                     >
-                      +971 58 892 7001 (UAE)
+                      {import.meta.env.VITE_CONTACT_PHONE} (UAE)
                     </a>
                     <a
-                      href="tel:+201094697569"
+                      href={`tel:${import.meta.env.VITE_CONTACT_PHONE_EG}`}
                       className="block font-medium text-foreground hover:text-accent transition-colors"
                       dir="ltr"
                     >
-                      +20 109 469 7569 (EG)
+                      {import.meta.env.VITE_CONTACT_PHONE_EG} (EG)
                     </a>
                   </div>
                 </div>
@@ -146,7 +146,7 @@ export const ContactSection = () => {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">العنوان</p>
-                  <p className="font-medium text-foreground">القاهرة، مصر</p>
+                  <p className="font-medium text-foreground">{import.meta.env.VITE_CONTACT_LOCATION}</p>
                 </div>
               </div>
             </div>
