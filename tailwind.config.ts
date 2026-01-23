@@ -71,6 +71,9 @@ export default {
         elevated: "var(--shadow-elevated)",
         hero: "var(--shadow-hero)",
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
