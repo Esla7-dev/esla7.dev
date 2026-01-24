@@ -63,100 +63,140 @@ export const ContactSection = () => {
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <span className="text-accent font-semibold mb-4 block">
+            <motion.span 
+              className="text-accent font-semibold mb-4 block"
+              initial={{ opacity: 0, letterSpacing: "0.2em" }}
+              animate={isInView ? { opacity: 1, letterSpacing: "0.05em" } : {}}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            >
               تواصل معنا
-            </span>
-            <h2 className="heading-section text-foreground mb-6">
+            </motion.span>
+            <motion.h2 
+              className="heading-section text-foreground mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            >
               لنبدأ مشروعك القادم
-            </h2>
-            <div className="divider-accent mb-8" />
+            </motion.h2>
+            <motion.div 
+              className="divider-accent mb-8"
+              initial={{ scaleX: 0, originX: 0 }}
+              animate={isInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            />
 
-            <p className="text-body mb-10">
+            <motion.p 
+              className="text-body mb-10"
+              initial={{ opacity: 0, filter: "blur(4px)" }}
+              animate={isInView ? { opacity: 1, filter: "blur(0px)" } : {}}
+              transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            >
               سواء كنت تبحث عن شريك تصميم لمشروعك المحلي أو تحتاج رسومات تنفيذية
               لمشروع دولي، نحن هنا لمساعدتك. تواصل معنا لنناقش كيف يمكننا العمل
               معًا.
-            </p>
+            </motion.p>
 
             <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                  <Mail className="text-accent" size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">البريد الإلكتروني</p>
-                  <a
-                    href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`}
-                    className="font-medium text-foreground hover:text-accent transition-colors"
+              {[
+                {
+                  icon: Mail,
+                  label: "البريد الإلكتروني",
+                  value: import.meta.env.VITE_CONTACT_EMAIL,
+                  href: `mailto:${import.meta.env.VITE_CONTACT_EMAIL}`,
+                },
+                {
+                  icon: MessageCircle,
+                  label: "واتساب",
+                  value: import.meta.env.VITE_CONTACT_PHONE,
+                  href: `https://wa.me/${import.meta.env.VITE_CONTACT_WHATSAPP}`,
+                  isLtr: true,
+                },
+                {
+                  icon: Phone,
+                  label: "الهاتف (مصر)",
+                  value: import.meta.env.VITE_CONTACT_PHONE_EG,
+                  href: `tel:${import.meta.env.VITE_CONTACT_PHONE_EG}`,
+                  isLtr: true,
+                },
+              ].map((contact, index) => (
+                <motion.div 
+                  key={contact.label}
+                  className="flex items-center gap-4 group"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.8 + (index * 0.1),
+                    ease: [0.25, 0.1, 0.25, 1]
+                  }}
+                  whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                >
+                  <motion.div 
+                    className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center"
+                    whileHover={{ 
+                      scale: 1.1, 
+                      rotate: 5,
+                      backgroundColor: "hsl(var(--accent) / 0.2)",
+                      transition: { duration: 0.2 }
+                    }}
                   >
-                    {import.meta.env.VITE_CONTACT_EMAIL}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                  <MessageCircle className="text-accent" size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">واتساب</p>
-                  <a
-                    href={`https://wa.me/${import.meta.env.VITE_CONTACT_WHATSAPP}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-foreground hover:text-accent transition-colors"
-                    dir="ltr"
-                  >
-                    {import.meta.env.VITE_CONTACT_PHONE}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                  <Phone className="text-accent" size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">الهاتف</p>
-                  <div className="space-y-1">
+                    <contact.icon className="text-accent" size={24} />
+                  </motion.div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">{contact.label}</p>
                     <a
-                      href={`tel:${import.meta.env.VITE_CONTACT_PHONE}`}
-                      className="block font-medium text-foreground hover:text-accent transition-colors"
-                      dir="ltr"
+                      href={contact.href}
+                      target={contact.href.startsWith('http') ? "_blank" : undefined}
+                      rel={contact.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                      className="font-medium text-foreground hover:text-accent transition-colors"
+                      dir={contact.isLtr ? "ltr" : undefined}
                     >
-                      {import.meta.env.VITE_CONTACT_PHONE} (UAE)
-                    </a>
-                    <a
-                      href={`tel:${import.meta.env.VITE_CONTACT_PHONE_EG}`}
-                      className="block font-medium text-foreground hover:text-accent transition-colors"
-                      dir="ltr"
-                    >
-                      {import.meta.env.VITE_CONTACT_PHONE_EG} (EG)
+                      {contact.value}
                     </a>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              ))}
 
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+              <motion.div 
+                className="flex items-center gap-4 group"
+                initial={{ opacity: 0, x: -30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 1.1,
+                  ease: [0.25, 0.1, 0.25, 1]
+                }}
+                whileHover={{ x: 5, transition: { duration: 0.2 } }}
+              >
+                <motion.div 
+                  className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center"
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: 5,
+                    backgroundColor: "hsl(var(--accent) / 0.2)",
+                    transition: { duration: 0.2 }
+                  }}
+                >
                   <MapPin className="text-accent" size={24} />
-                </div>
+                </motion.div>
                 <div>
                   <p className="text-sm text-muted-foreground">العنوان</p>
                   <p className="font-medium text-foreground">{import.meta.env.VITE_CONTACT_LOCATION}</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, x: 40, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
+            transition={{ duration: 0.9, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <form
               onSubmit={handleSubmit}

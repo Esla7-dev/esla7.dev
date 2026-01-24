@@ -14,7 +14,7 @@ export const HeroSection = () => {
         initial={{ scale: 1.15, rotate: 0.5 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ 
-          duration: 2, 
+          duration: 3.5, 
           ease: [0.25, 0.1, 0.25, 1],
         }}
       >
@@ -25,7 +25,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0, filter: "blur(10px)" }}
           animate={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ 
-            duration: 2, 
+            duration: 3.5, 
             ease: [0.25, 0.1, 0.25, 1],
           }}
         />
@@ -42,7 +42,8 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
-              duration: 0.8,
+              duration: 1,
+              delay: 0.8,
               ease: [0.25, 0.1, 0.25, 1],
             }}
           >
@@ -50,7 +51,7 @@ export const HeroSection = () => {
               className="inline-block text-accent font-semibold text-lg mb-6 relative"
               initial={{ letterSpacing: "0.2em", opacity: 0 }}
               animate={{ letterSpacing: "0.05em", opacity: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
+              transition={{ duration: 1.5, delay: 1.2 }}
             >
               ESLAH | إصلاح
               {/* Subtle glow effect */}
@@ -63,8 +64,8 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 40, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ 
-              duration: 1,
-              delay: 0.3,
+              duration: 1.2,
+              delay: 1.5,
               ease: [0.25, 0.1, 0.25, 1],
             }}
             className="heading-display mb-6 relative"
@@ -85,8 +86,8 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
-              duration: 0.9,
-              delay: 0.5,
+              duration: 1,
+              delay: 2.2,
               ease: [0.25, 0.1, 0.25, 1],
             }}
           >
@@ -94,7 +95,7 @@ export const HeroSection = () => {
               className="text-xl md:text-2xl text-primary-foreground/90 leading-relaxed mb-10 max-w-2xl backdrop-blur-sm"
               initial={{ filter: "blur(4px)" }}
               animate={{ filter: "blur(0px)" }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 1, delay: 2.5 }}
             >
               مكتب هندسي متكامل يقدم حلول تصميم قابلة للتنفيذ لمشاريع داخل مصر
               وعلى المستوى الدولي. شريك تصميم وإنتاج هندسي، وليس مجرد مكتب تصميم.
@@ -106,8 +107,8 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
-              duration: 0.9,
-              delay: 0.7,
+              duration: 1,
+              delay: 3.2,
               ease: [0.25, 0.1, 0.25, 1],
             }}
             className="flex flex-col sm:flex-row gap-4"
@@ -155,8 +156,8 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
-              duration: 0.9,
-              delay: 0.9,
+              duration: 1,
+              delay: 4,
               ease: [0.25, 0.1, 0.25, 1],
             }}
             className="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-primary-foreground/20 backdrop-blur-sm"
@@ -171,8 +172,8 @@ export const HeroSection = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ 
-                  duration: 0.5, 
-                  delay: 1 + (index * 0.1),
+                  duration: 0.6, 
+                  delay: 4.3 + (index * 0.15),
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
                 whileHover={{ 
@@ -208,7 +209,7 @@ export const HeroSection = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
           duration: 0.8, 
-          delay: 1.2,
+          delay: 4.8,
           ease: [0.25, 0.1, 0.25, 1],
         }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
