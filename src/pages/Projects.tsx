@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Search } from "lucide-react";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import { getAllProjects, type Project } from "@/data/projects";
 
 const categories = ["الكل", "سكني", "تجاري", "داخلي", "خارجي"];
@@ -23,6 +25,8 @@ export default function Projects() {
 
   return (
     <div className="min-h-screen pt-24 pb-16">
+      <Header />
+
       {/* Hero Section */}
       <section className="section-padding bg-gradient-to-b from-background to-background-light">
         <div className="section-container">
@@ -93,6 +97,8 @@ export default function Projects() {
           )}
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

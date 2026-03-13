@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -13,7 +14,11 @@ const navLinks = [
   { href: "#contact", label: "تواصل معنا" },
 ];
 
+const MotionLink = motion(Link);
+
 export const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -28,33 +33,46 @@ export const Header = () => {
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isMobileMenuOpen]);
 
-  // Handle navigation link click
-  const handleNavClick = (href: string) => {
+  const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
-    
-    // Small delay to allow menu animation to start before scrolling
-    setTimeout(() => {
-      const element = document.querySelector(href);
-      if (element) {
-        const headerOffset = 80; // Height of fixed header
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  };
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    }, 100);
+  const buildHashLocation = (hash: string) => ({
+    pathname: "/",
+    hash,
+  });
+
+  const scrollToSection = (hash: string) => {
+    const element = document.querySelector(hash);
+    if (!element) return;
+
+    const headerOffset = 80;
+    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({
+      top: elementPosition - headerOffset,
+      behavior: "smooth",
+    });
+  };
+
+  const navigateToSection = (hash: string) => {
+    // Always attempt to scroll, even if we're already on the same hash
+    if (window.location.hash === hash && window.location.pathname === "/") {
+      scrollToSection(hash);
+      closeMobileMenu();
+      return;
+    }
+
+    navigate(buildHashLocation(hash), { replace: false });
+    closeMobileMenu();
   };
 
   return (
@@ -68,21 +86,22 @@ export const Header = () => {
       <div className="section-container">
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3">
+          <Link to={buildHashLocation("#home")} className="flex items-center gap-3" onClick={() => navigateToSection("#home") }>
             <span className="text-2xl font-bold text-foreground">ESLAH</span>
             <span className="text-xl font-semibold text-accent">إصلاح</span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
+                to={buildHashLocation(link.href)}
+                onClick={() => navigateToSection(link.href)}
                 className="nav-link text-sm font-medium text-black"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -109,20 +128,17 @@ export const Header = () => {
           >
             <div className="section-container py-6 space-y-1">
               {navLinks.map((link, index) => (
-                <motion.a
+                <MotionLink
                   key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
+                  to={buildHashLocation(link.href)}
+                  onClick={() => navigateToSection(link.href)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
                   className="block py-3 px-4 text-foreground font-medium hover:bg-accent/10 rounded-sm transition-colors"
                 >
                   {link.label}
-                </motion.a>
+                </MotionLink>
               ))}
             </div>
           </motion.div>
